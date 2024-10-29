@@ -107,7 +107,8 @@ func (h *Handler) GetClients(c *gin.Context) {
 
 	if _, ok := h.hub.Rooms[roomId]; !ok {
 		clients = make([]ClientRes, 0)
-		c.JSON(http.StatusOK, clients)
+		c.JSON(http.StatusNotFound, clients)
+		return
 	}
 
 	for _, c := range h.hub.Rooms[roomId].Clients {
